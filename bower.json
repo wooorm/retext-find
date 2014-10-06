@@ -1,0 +1,29 @@
+{
+  "name": "retext-find",
+  "main": "index.js",
+  "description": "Retext node finder",
+  "license": "MIT",
+  "keywords": [
+    "retext",
+    "find"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/retext-find.git"
+  },
+  "authors": [
+    "Titus Wormer <tituswormer@gmail.com>"
+  ],
+  "ignore": [
+    ".*",
+    "*.log",
+    "*.md",
+    "components",
+    "build",
+    "component.json",
+    "package.json",
+    "coverage",
+    "node_modules",
+    "spec"
+  ]
+}

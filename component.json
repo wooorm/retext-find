@@ -1,0 +1,14 @@
+{
+  "name": "retext-find",
+  "version": "0.0.1",
+  "description": "Retext node finder",
+  "license": "MIT",
+  "keywords": [
+    "retext",
+    "find"
+  ],
+  "repository": "wooorm/retext-find",
+  "scripts" : [
+    "index.js"
+  ]
+}
