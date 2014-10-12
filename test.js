@@ -11,7 +11,7 @@ var find,
  * Module dependencies.
  */
 
-find = require('..');
+find = require('./');
 Retext = require('retext');
 assert = require('assert');
 
