@@ -77,6 +77,51 @@ retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
 
 Find the first following sibling that passes `test`, `child.next` if `test` is omitted, or `null`.
 
+### Child#findBeforeUpwards(test?)
+
+```js
+retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
+    var node = tree.tail.head.head.findBeforeUpwards();
+
+    console.log(node.type, node.toString());
+    /**
+     * 'WhiteSpaceNode', '\n\n'
+     */
+});
+```
+
+Find the first node directly before an ancestor that passes `test`, or `null`.
+
+### Child#findAfterUpwards(test?)
+
+```js
+retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
+    var node = tree.head.head.tail.findAfterUpwards();
+
+    console.log(node.type, node.toString());
+    /**
+     * 'WhiteSpaceNode', '\n\n'
+     */
+});
+```
+
+Find the first node directly after an ancestor that passes `test`, or `null`.
+
+### Child#findAfter(test?)
+
+```js
+retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
+    var node = tree.head.findAfter(tree.WHITE_SPACE_NODE);
+
+    console.log(node.type, node.toString());
+    /**
+     * 'WhiteSpaceNode', '\n\n'
+     */
+});
+```
+
+Find the first following sibling that passes `test`, `child.next` if `test` is omitted, or `null`.
+
 ### Child#findAllBefore(test?)
 
 ```js
