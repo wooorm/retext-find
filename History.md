@@ -1,5 +1,5 @@
 
-n.n.n / 2014-10-13
+0.1.0 / 2014-10-13
 ==================
 
  * Add docs for findBeforeUpwards, findAfterUpwards to Readme.md
