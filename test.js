@@ -77,12 +77,20 @@ describe('retext-find.attach()', function () {
         assertChildHasMethod('findBefore');
     });
 
+    it('should attach a `findBeforeUpwards` method on `Child#`', function () {
+        assertChildHasMethod('findBeforeUpwards');
+    });
+
     it('should attach a `findAllBefore` method on `Child#`', function () {
         assertChildHasMethod('findAllBefore');
     });
 
     it('should attach a `findAfter` method on `Child#`', function () {
         assertChildHasMethod('findAfter');
+    });
+
+    it('should attach a `findAfterUpwards` method on `Child#`', function () {
+        assertChildHasMethod('findAfterUpwards');
     });
 
     it('should attach a `findAllAfter` method on `Child#`', function () {
@@ -132,7 +140,7 @@ describe('Child#findAfter', function () {
     });
 
     describe('Child#findAfter(type)', function () {
-        it('should return the following sibling of type `type`', function () {
+        it('should return the following sibling of `type`', function () {
             var result;
 
             result = tree.head.head[0].findAfter(tree.WORD_NODE);
@@ -198,7 +206,7 @@ describe('Child#findBefore', function () {
     });
 
     describe('Child#findBefore(type)', function () {
-        it('should return the preceding sibling of type `type`', function () {
+        it('should return the preceding sibling of `type`', function () {
             var result;
 
             result = tree.head.head.tail.findBefore(tree.WHITE_SPACE_NODE);
@@ -260,7 +268,7 @@ describe('Child#findAllAfter', function () {
     });
 
     describe('Child#findAllAfter(type)', function () {
-        it('should return following siblings of type `type`', function () {
+        it('should return following siblings of `type`', function () {
             var result;
 
             result = tree.head.head[2].findAllAfter(tree.WORD_NODE);
@@ -297,7 +305,7 @@ describe('Child#findAllBefore', function () {
     });
 
     describe('Child#findAllBefore(type)', function () {
-        it('should return preceding siblings of type `type`', function () {
+        it('should return preceding siblings of `type`', function () {
             var result;
 
             result = tree.head.head[3].findAllBefore(tree.WORD_NODE);
@@ -306,6 +314,142 @@ describe('Child#findAllBefore', function () {
             assert(result[0] === tree.head.head[2]);
             assert(result[1] === tree.head.head[0]);
             assert(result[2] === undefined);
+        });
+    });
+});
+
+describe('Child#findAfterUpwards', function () {
+    var tree;
+
+    before(function (done) {
+        retext.parse(paragraph, function (err, node) {
+            tree = node;
+
+            done(err);
+        });
+    });
+
+    describe('Child#findAfterUpwards()', function () {
+        it('should return the following upwards node', function () {
+            var result;
+
+            result = tree.head.head[0].findAfterUpwards();
+
+            assert(result === tree.head.head.next);
+        });
+
+        it('or null', function () {
+            var result;
+
+            result = tree.head.tail.tail.findAfterUpwards();
+
+            assert(result === null);
+        });
+    });
+
+    describe('Child#findAfterUpwards(type)', function () {
+        it('should return the following upwards node of `type`', function () {
+            var result;
+
+            result = tree.head.head.head
+                .findAfterUpwards(tree.WHITE_SPACE_NODE);
+
+            assert(result === tree.head.head.next);
+        });
+
+        it('or null', function () {
+            var result;
+
+            result = tree.head.head[5].findAfterUpwards(tree.WORD_NODE);
+
+            assert(result === null);
+        });
+    });
+
+    describe('Child#findAfterUpwards(node)', function () {
+        it('should return the upwards `node`', function () {
+            var result;
+
+            result = tree.head.head.tail
+                .findAfterUpwards(tree.head.head.next);
+
+            assert(result === tree.head.head.next);
+        });
+
+        it('or null', function () {
+            var result;
+
+            result = tree.head.head[2].findAfterUpwards(tree);
+
+            assert(result === null);
+        });
+    });
+});
+
+describe('Child#findBeforeUpwards', function () {
+    var tree;
+
+    before(function (done) {
+        retext.parse(paragraph, function (err, node) {
+            tree = node;
+
+            done(err);
+        });
+    });
+
+    describe('Child#findBeforeUpwards()', function () {
+        it('should return the preceding upwards node', function () {
+            var result;
+
+            result = tree.head.tail[0].findBeforeUpwards();
+
+            assert(result === tree.head.tail.prev);
+        });
+
+        it('or null', function () {
+            var result;
+
+            result = tree.head.head.next.findBeforeUpwards();
+
+            assert(result === null);
+        });
+    });
+
+    describe('Child#findBeforeUpwards(type)', function () {
+        it('should return the preceding upwards node of `type`', function () {
+            var result;
+
+            result = tree.head.tail.tail
+                .findBeforeUpwards(tree.WHITE_SPACE_NODE);
+
+            assert(result === tree.head.head.next);
+        });
+
+        it('or null', function () {
+            var result;
+
+            result = tree.head.head[5].findBeforeUpwards(tree.WORD_NODE);
+
+            assert(result === null);
+        });
+    });
+
+    describe('Child#findBeforeUpwards(node)', function () {
+        it('should return the preceding `node`', function () {
+            var result;
+
+            result = tree.head.tail.tail
+                .findBeforeUpwards(tree.head.tail.prev);
+
+            assert(result === tree.head.tail.prev);
+        });
+
+        it('or null', function () {
+            var result;
+
+            result = tree.head.head[2].findBeforeUpwards(tree);
+
+            assert(result === null);
         });
     });
 });
@@ -342,7 +486,7 @@ describe('Child#findParent', function () {
     });
 
     describe('Child#findParent(type)', function () {
-        it('should return the ancestor of type `type`', function () {
+        it('should return the ancestor of `type`', function () {
             var result;
 
             result = tree.head.head.head.findParent(tree.ROOT_NODE);
@@ -403,7 +547,7 @@ describe('Child#findParents', function () {
     });
 
     describe('Child#findParents(type)', function () {
-        it('should return the ancestor of type `type`', function () {
+        it('should return the ancestor of `type`', function () {
             var result;
 
             result = tree.head.head.head.findParents(tree.ROOT_NODE);
@@ -433,7 +577,7 @@ describe('Parent#findFirstChild', function () {
     });
 
     describe('Child#findFirstChild(type)', function () {
-        it('should return the first child of type `type`', function () {
+        it('should return the first child of `type`', function () {
             assert(
                 tree.head.head.findFirstChild(tree.PUNCTUATION_NODE) ===
                 tree.head.head.tail
@@ -460,7 +604,7 @@ describe('Parent#findLastChild', function () {
     });
 
     describe('Child#findLastChild(type)', function () {
-        it('should return the first child of type `type`', function () {
+        it('should return the first child of `type`', function () {
             assert(
                 tree.head.head.findLastChild(tree.WORD_NODE) ===
                 tree.head.head[4]
@@ -498,7 +642,7 @@ describe('Child#findChildren', function () {
     });
 
     describe('Child#findChildren(type)', function () {
-        it('should return children of type `type`', function () {
+        it('should return children of `type`', function () {
             var result;
 
             result = tree.head.head.findChildren(tree.WORD_NODE);

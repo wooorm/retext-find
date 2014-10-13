@@ -52,6 +52,31 @@ function findInDirection(node, direction, test) {
 }
 
 /**
+ * Find a following node upwards.
+ *
+ * @param {Node} node
+ * @param {string} direction - Such as `prev` or `next`.
+ * @param {(Node|string)?} test - See `assert`.
+ * @return {Node?} Found node or `null`.
+ */
+
+function findUpwardsInDirection(node, direction, test) {
+    node = node.parent;
+
+    while (node) {
+        if (node[direction]) {
+            if (assert(node[direction], test)) {
+                return node[direction];
+            }
+        }
+
+        node = node.parent;
+    }
+
+    return null;
+}
+
+/**
  * Find all nodes from `node` in `direction` that pass
  * `test`.
  *
@@ -99,6 +124,30 @@ function findBefore(test) {
 
 function findAfter(test) {
     return findInDirection(this, 'next', test);
+}
+
+/**
+ * Find the first preceding node upwards that passes `test`.
+ *
+ * @this {Child}
+ * @param {(Node|string)?} test - See `assert`.
+ * @return {Child?} Found node.
+ */
+
+function findBeforeUpwards(test) {
+    return findUpwardsInDirection(this, 'prev', test);
+}
+
+/**
+ * Find the first following node upwards that passes `test`.
+ *
+ * @this {Child}
+ * @param {(Node|string)?} test - See `assert`.
+ * @return {Child?} Found node.
+ */
+
+function findAfterUpwards(test) {
+    return findUpwardsInDirection(this, 'next', test);
 }
 
 /**
@@ -222,6 +271,8 @@ function attach(retext) {
 
     childPrototype.findBefore = findBefore;
     childPrototype.findAfter = findAfter;
+    childPrototype.findBeforeUpwards = findBeforeUpwards;
+    childPrototype.findAfterUpwards = findAfterUpwards;
     childPrototype.findAllBefore = findAllBefore;
     childPrototype.findAllAfter = findAllAfter;
     childPrototype.findParent = findParent;
