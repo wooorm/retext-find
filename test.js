@@ -42,6 +42,7 @@ function assertChildHasMethod(methodName) {
     assert(typeof new TextOM.ParagraphNode()[methodName] === 'function');
     assert(typeof new TextOM.SentenceNode()[methodName] === 'function');
     assert(typeof new TextOM.WordNode()[methodName] === 'function');
+    assert(typeof new TextOM.SymbolNode()[methodName] === 'function');
     assert(typeof new TextOM.WhiteSpaceNode()[methodName] === 'function');
     assert(typeof new TextOM.PunctuationNode()[methodName] === 'function');
     assert(typeof new TextOM.TextNode()[methodName] === 'function');
@@ -56,8 +57,6 @@ function assertParentHasMethod(methodName) {
     assert(typeof new TextOM.ParagraphNode()[methodName] === 'function');
     assert(typeof new TextOM.SentenceNode()[methodName] === 'function');
     assert(typeof new TextOM.WordNode()[methodName] === 'function');
-    assert(typeof new TextOM.WhiteSpaceNode()[methodName] === 'function');
-    assert(typeof new TextOM.PunctuationNode()[methodName] === 'function');
 }
 
 describe('retext-find.attach()', function () {
