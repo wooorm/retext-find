@@ -1,38 +1,40 @@
 'use strict';
 
+/**
+ * Dependencies.
+ */
+
 var find,
     Retext,
-    assert,
-    retext,
-    TextOM,
-    paragraph;
-
-/**
- * Module dependencies.
- */
+    assert;
 
 find = require('./');
 Retext = require('retext');
 assert = require('assert');
 
 /**
- * Constants.
+ * Fixture.
  */
 
+var paragraph;
+
 paragraph = 'Some simple text. Other sentence.';
+
+/**
+ * Retext.
+ */
+
+var retext,
+    TextOM;
 
 retext = new Retext().use(find);
 TextOM = retext.TextOM;
 
 /**
- * Unit tests.
+ * Check if `Child` and its sub-classers have a method.
+ *
+ * @param {string} methodName
  */
-
-describe('retext-find()', function () {
-    it('should be a `function`', function () {
-        assert(typeof find === 'function');
-    });
-});
 
 function assertChildHasMethod(methodName) {
     assert(typeof new TextOM.Child()[methodName] === 'function');
@@ -49,6 +51,12 @@ function assertChildHasMethod(methodName) {
     assert(typeof new TextOM.SourceNode()[methodName] === 'function');
 }
 
+/**
+ * Check if `Parent` and its sub-classers have a method.
+ *
+ * @param {string} methodName
+ */
+
 function assertParentHasMethod(methodName) {
     assert(typeof new TextOM.Parent()[methodName] === 'function');
     assert(typeof new TextOM.Element()[methodName] === 'function');
@@ -58,6 +66,16 @@ function assertParentHasMethod(methodName) {
     assert(typeof new TextOM.SentenceNode()[methodName] === 'function');
     assert(typeof new TextOM.WordNode()[methodName] === 'function');
 }
+
+/**
+ * Tests.
+ */
+
+describe('retext-find()', function () {
+    it('should be a `function`', function () {
+        assert(typeof find === 'function');
+    });
+});
 
 describe('retext-find.attach()', function () {
     it('should be a `function`', function () {
