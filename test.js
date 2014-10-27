@@ -4,11 +4,11 @@
  * Dependencies.
  */
 
-var find,
+var retextFind,
     Retext,
     assert;
 
-find = require('./');
+retextFind = require('./');
 Retext = require('retext');
 assert = require('assert');
 
@@ -27,7 +27,7 @@ paragraph = 'Some simple text. Other sentence.';
 var retext,
     TextOM;
 
-retext = new Retext().use(find);
+retext = new Retext().use(retextFind);
 TextOM = retext.TextOM;
 
 /**
@@ -73,7 +73,7 @@ function assertParentHasMethod(methodName) {
 
 describe('retext-find()', function () {
     it('should be a `function`', function () {
-        assert(typeof find === 'function');
+        assert(typeof retextFind === 'function');
     });
 
     it('should attach a `findParent` method on `Child#`', function () {
