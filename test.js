@@ -75,12 +75,6 @@ describe('retext-find()', function () {
     it('should be a `function`', function () {
         assert(typeof find === 'function');
     });
-});
-
-describe('retext-find.attach()', function () {
-    it('should be a `function`', function () {
-        assert(typeof find.attach === 'function');
-    });
 
     it('should attach a `findParent` method on `Child#`', function () {
         assertChildHasMethod('findParent');

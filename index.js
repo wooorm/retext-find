@@ -1,12 +1,6 @@
 'use strict';
 
 /**
- * Define `plugin`.
- */
-
-function plugin() {}
-
-/**
  * Detect if `node` passes a test.
  *
  * @param {Node} node
@@ -253,12 +247,12 @@ function findChildren(test) {
 }
 
 /**
- * Define `attach`.
+ * Define `find`.
  *
  * @param {Retext} retext
  */
 
-function attach(retext) {
+function find(retext) {
     var TextOM,
         parentPrototype,
         elementPrototype,
@@ -287,13 +281,7 @@ function attach(retext) {
 }
 
 /**
- * Expose `attach`.
+ * Expose `find`.
  */
 
-plugin.attach = attach;
-
-/**
- * Expose `plugin`.
- */
-
-exports = module.exports = plugin;
+exports = module.exports = find;
