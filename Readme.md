@@ -22,14 +22,13 @@ $ bower install retext-find
 ## Usage
 
 ```js
-var Retext,
-    retext,
-    find;
+var Retext = require('retext');
+var find = require('retext-find');
+var inspect = require('retext-inspect');
 
-Retext = require('retext');
-find = require('retext-find');
-
-retext = new Retext().use(find);
+var retext = new Retext()
+    .use(inspect)
+    .use(find);
 
 /**
  * See each method below.
@@ -51,11 +50,19 @@ The first makes it easy to find only nodes of a certain type (such as words), th
 
 ```js
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
-    var node = tree.tail.findBefore(tree.PARAGRAPH_NODE);
-
-    console.log(node.type, node.toString());
+    console.log(tree.tail.findBefore(tree.PARAGRAPH_NODE));
     /**
-     * 'ParagraphNode', 'Some simple text.'
+     * ParagraphNode[1]
+     * └─ SentenceNode[6]
+     *    ├─ WordNode[1]
+     *    │  └─ TextNode: 'Some'
+     *    ├─ WhiteSpaceNode: ' '
+     *    ├─ WordNode[1]
+     *    │  └─ TextNode: 'simple'
+     *    ├─ WhiteSpaceNode: ' '
+     *    ├─ WordNode[1]
+     *    │  └─ TextNode: 'text'
+     *    └─ PunctuationNode: '.'
      */
 });
 ```
@@ -66,11 +73,9 @@ Find the first preceding sibling that passes `test`, `child.prev` if `test` is o
 
 ```js
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
-    var node = tree.head.findAfter(tree.WHITE_SPACE_NODE);
-
-    console.log(node.type, node.toString());
+    console.log(tree.head.findAfter(tree.WHITE_SPACE_NODE));
     /**
-     * 'WhiteSpaceNode', '\n\n'
+     * WhiteSpaceNode: '\n\n'
      */
 });
 ```
@@ -81,11 +86,9 @@ Find the first following sibling that passes `test`, `child.next` if `test` is o
 
 ```js
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
-    var node = tree.tail.head.head.findBeforeUpwards();
-
-    console.log(node.type, node.toString());
+    console.log(tree.tail.head.head.findBeforeUpwards());
     /**
-     * 'WhiteSpaceNode', '\n\n'
+     * WhiteSpaceNode: '\n\n'
      */
 });
 ```
@@ -96,11 +99,9 @@ Find the first node directly before an ancestor that passes `test`, or `null`.
 
 ```js
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
-    var node = tree.head.head.tail.findAfterUpwards();
-
-    console.log(node.type, node.toString());
+    console.log(tree.head.head.tail.findAfterUpwards());
     /**
-     * 'WhiteSpaceNode', '\n\n'
+     * WhiteSpaceNode: '\n\n'
      */
 });
 ```
@@ -111,11 +112,9 @@ Find the first node directly after an ancestor that passes `test`, or `null`.
 
 ```js
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
-    var node = tree.head.findAfter(tree.WHITE_SPACE_NODE);
-
-    console.log(node.type, node.toString());
+    console.log(tree.head.findAfter(tree.WHITE_SPACE_NODE));
     /**
-     * 'WhiteSpaceNode', '\n\n'
+     * WhiteSpaceNode: '\n\n'
      */
 });
 ```
@@ -126,14 +125,14 @@ Find the first following sibling that passes `test`, `child.next` if `test` is o
 
 ```js
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
-    var whiteSpace = tree.head.head[3];
-
-    whiteSpace.findBefore(tree.WORD_NODE).forEach(function (node) {
-        console.log(node.type, node.toString());
-    });
+    console.log(tree.head.head[3].findAllBefore(tree.WORD_NODE));
     /**
-     * 'WordNode', 'simple'
-     * 'WordNode', 'Some'
+     * [
+     *   WordNode[1]
+     *   └─ TextNode: 'simple',
+     *   WordNode[1]
+     *   └─ TextNode: 'Some'
+     * ]
      */
 });
 ```
@@ -146,14 +145,13 @@ Find preceding siblings that pass `test`.
 
 ```js
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
-    var whiteSpace = tree.head.head[3];
-
-    whiteSpace.findAfter().forEach(function (node) {
-        console.log(node.type, node.toString());
-    });
+    console.log(tree.head.head[3].findAllAfter());
     /**
-     * 'WordNode', 'text'
-     * 'PunctuationNode', '.'
+     * [
+     *   WordNode[1]
+     *   └─ TextNode: 'text',
+     *   PunctuationNode: '.'
+     * ]
      */
 });
 ```
@@ -164,14 +162,25 @@ Find following siblings that pass `test`.
 
 ```js
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
-    var node = tree.head.head.head.findParent(tree.head)
-
-    console.log(node.type, node.toString());
+    console.log(tree.head.head.head.findParent(tree.head));
     /**
-     * 'ParagraphNode', 'Some simple text.'
+     * ParagraphNode[1]
+     * └─ SentenceNode[6]
+     *    ├─ WordNode[1]
+     *    │  └─ TextNode: 'Some'
+     *    ├─ WhiteSpaceNode: ' '
+     *    ├─ WordNode[1]
+     *    │  └─ TextNode: 'simple'
+     *    ├─ WhiteSpaceNode: ' '
+     *    ├─ WordNode[1]
+     *    │  └─ TextNode: 'text'
+     *    └─ PunctuationNode: '.'
      */
 
-    tree.head.head.head.findParent(tree.tail); // null
+    console.log(tree.head.head.head.findParent(tree.tail));
+    /**
+     * null
+     */
 });
 ```
 
@@ -198,11 +207,9 @@ Find parents that pass `test`.
 
 ```js
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
-    var node = tree.head.head.findFirstChild(tree.PUNCTUATION_NODE);
-
-    console.log(node.type, node.toString());
+    console.log(tree.head.head.findFirstChild(tree.PUNCTUATION_NODE));
     /**
-     * 'PunctuationNode', '.'
+     * PunctuationNode: '.'
      */
 });
 ```
@@ -213,11 +220,9 @@ Find the first child that passes `test`, `parent.head` if `test` is omitted, or 
 
 ```js
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
-    var node = tree.head.head.findLastChild(tree.WORD_NODE);
-
-    console.log(node.type, node.toString());
+    console.log(tree.head.head.findLastChild(tree.WORD_NODE));
     /**
-     * 'WordNode', 'text'
+     * WordNode: 'text'
      */
 });
 ```
@@ -228,13 +233,16 @@ Find the last child that passes `test`, `parent.tail` if `test` is omitted, or `
 
 ```js
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
-    tree.head.head.findChildren(tree.WORD_NODE).forEach(function (node) {
-        console.log(node.type, node.toString());
-    });
+    console.log(tree.head.head.findChildren(tree.WORD_NODE));
     /**
-     * 'WordNode', 'Some'
-     * 'WordNode', 'simple'
-     * 'WordNode', 'text'
+     * [
+     *   WordNode[1]
+     *   └─ TextNode: 'Some',
+     *   WordNode[1]
+     *   └─ TextNode: 'simple',
+     *   WordNode[1]
+     *   └─ TextNode: 'text'
+     * ]
      */
 });
 ```
