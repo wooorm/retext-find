@@ -1,4 +1,4 @@
-# retext-find [![Build Status](https://travis-ci.org/wooorm/retext-find.svg?branch=master)](https://travis-ci.org/wooorm/retext-find) [![Coverage Status](https://img.shields.io/coveralls/wooorm/retext-find.svg)](https://coveralls.io/r/wooorm/retext-find?branch=master)
+# retext-find [![Build Status](https://img.shields.io/travis/wooorm/retext-find.svg?style=flat)](https://travis-ci.org/wooorm/retext-find) [![Coverage Status](https://img.shields.io/coveralls/wooorm/retext-find.svg?style=flat)](https://coveralls.io/r/wooorm/retext-find?branch=master)
 
 **[retext](https://github.com/wooorm/retext "Retext")** node finder.
 
