@@ -1,4 +1,14 @@
 
+n.n.n / 2014-11-20
+==================
+
+ * Fix incorrect executive rights on `test.js`
+ * Refactor examples in `Readme.md`
+ * Add flat badges to `Readme.md`
+ * Refactor npm script targets in `package.json`
+ * Remove chalk for dev-dependencies
+ * Update retext
+
 0.1.2 / 2014-10-27
 ==================
 
