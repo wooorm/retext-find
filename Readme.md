@@ -251,4 +251,4 @@ Find children that pass `test`, or all children if `test` is omitted.
 
 ## License
 
-MIT © Titus Wormer
+MIT © [Titus Wormer](http://wooorm.com)
