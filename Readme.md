@@ -249,6 +249,26 @@ retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
 
 Find children that pass `test`, or all children if `test` is omitted.
 
+## Performance
+
+```
+                  find all paragraphs before a document's last paragraph
+     878,116 op/s » A section
+     122,654 op/s » An article
+
+                  find all paragraphs after a document's first paragraph
+     920,695 op/s » A section
+     136,250 op/s » An article
+
+                  find the first white space in a document
+  33,202,868 op/s » A section
+  32,811,946 op/s » An article
+
+                  find the last white space in a document
+  27,831,461 op/s » A section
+  30,050,900 op/s » An article
+```
+
 ## License
 
 MIT © [Titus Wormer](http://wooorm.com)
