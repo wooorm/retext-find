@@ -280,4 +280,4 @@ Find children that pass `test`, or all children if `test` is omitted.
 
 ## License
 
-MIT © [Titus Wormer](http://wooorm.com)
+[MIT](LICENSE) © [Titus Wormer](http://wooorm.com)
