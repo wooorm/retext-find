@@ -55,7 +55,7 @@ All methods below accept an optional `test` as their argument.
 
 The first makes it easy to find only nodes of a certain type (such as words), the later makes it easy to detect if a given node is indeed before, after, inside, or attached to the operated on node.
 
-### Child#findBefore(test?)
+### [Child](https://github.com/wooorm/textom#textomchild)#findBefore([test](#test)?)
 
 ```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
@@ -78,7 +78,7 @@ retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
 
 Find the first preceding sibling that passes `test`, `child.prev` if `test` is omitted, or `null`.
 
-### Child#findAfter(test?)
+### [Child](https://github.com/wooorm/textom#textomchild)#findAfter([test](#test)?)
 
 ```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
@@ -91,7 +91,7 @@ retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
 
 Find the first following sibling that passes `test`, `child.next` if `test` is omitted, or `null`.
 
-### Child#findBeforeUpwards(test?)
+### [Child](https://github.com/wooorm/textom#textomchild)#findBeforeUpwards([test](#test)?)
 
 ```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
@@ -104,7 +104,7 @@ retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
 
 Find the first node directly before an ancestor that passes `test`, or `null`.
 
-### Child#findAfterUpwards(test?)
+### [Child](https://github.com/wooorm/textom#textomchild)#findAfterUpwards([test](#test)?)
 
 ```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
@@ -117,7 +117,7 @@ retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
 
 Find the first node directly after an ancestor that passes `test`, or `null`.
 
-### Child#findAfter(test?)
+### [Child](https://github.com/wooorm/textom#textomchild)#findAfter([test](#test)?)
 
 ```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
@@ -130,7 +130,7 @@ retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
 
 Find the first following sibling that passes `test`, `child.next` if `test` is omitted, or `null`.
 
-### Child#findAllBefore(test?)
+### [Child](https://github.com/wooorm/textom#textomchild)#findAllBefore([test](#test)?)
 
 ```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
@@ -150,7 +150,7 @@ retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
 
 Find preceding siblings that pass `test`.
 
-### Child#findAllAfter(test?)
+### [Child](https://github.com/wooorm/textom#textomchild)#findAllAfter([test](#test)?)
 
 ```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
@@ -167,7 +167,7 @@ retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
 
 Find following siblings that pass `test`.
 
-### Child#findParent(test?)
+### [Child](https://github.com/wooorm/textom#textomchild)#findParent([test](#test)?)
 
 ```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
@@ -195,7 +195,7 @@ retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
 
 Find the first parent that passes `test`, `child.parent` if `test` is omitted, or `null`.
 
-### Child#findParents(test?)
+### [Child](https://github.com/wooorm/textom#textomchild)#findParents([test](#test)?)
 
 ```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
@@ -212,7 +212,7 @@ retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
 
 Find parents that pass `test`.
 
-### Parent#findFirstChild(test?)
+### [Parent](https://github.com/wooorm/textom#textomparent-nlcstparent)#findFirstChild([test](#test)?)
 
 ```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
@@ -225,7 +225,7 @@ retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
 
 Find the first child that passes `test`, `parent.head` if `test` is omitted, or `null`.
 
-### Parent#findLastChild(test?)
+### [Parent](https://github.com/wooorm/textom#textomparent-nlcstparent)#findLastChild([test](#test)?)
 
 ```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
@@ -238,7 +238,7 @@ retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
 
 Find the last child that passes `test`, `parent.tail` if `test` is omitted, or `null`.
 
-### Parent#findChildren(test?)
+### [Parent](https://github.com/wooorm/textom#textomparent-nlcstparent)#findChildren([test](#test)?)
 
 ```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
