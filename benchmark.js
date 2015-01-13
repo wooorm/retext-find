@@ -3,14 +3,14 @@
 var Retext,
     retextFind;
 
-/**
+/*
  * Dependencies.
  */
 
 Retext = require('retext');
 retextFind = require('./');
 
-/**
+/*
  * Dependencies.
  */
 
@@ -18,7 +18,7 @@ var retext;
 
 retext = new Retext().use(retextFind);
 
-/**
+/*
  * Test data: A (big?) article (w/ 100 paragraphs, 500
  * sentences, 10,000 words);
  *

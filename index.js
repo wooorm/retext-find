@@ -4,11 +4,10 @@
  * Detect if `node` passes a test.
  *
  * @param {Node} node
- * @param {(Node|string)?} test - If `string`, node's type,
+ * @param {Node|string?} test - If `string`, node's type,
  *   if `Node`, equal to `node`. Otherwise always passes.
  * @return {boolean}
  */
-
 function assert(node, test) {
     if (typeof test === 'string') {
         return node.type === test;
@@ -27,10 +26,9 @@ function assert(node, test) {
  *
  * @param {Node} node
  * @param {string} direction - Such as `prev`, `parent`.
- * @param {(Node|string)?} test - See `assert`.
+ * @param {Node|string?} test - See `assert`.
  * @return {Node?} Found node or `null`.
  */
-
 function findInDirection(node, direction, test) {
     node = node[direction];
 
@@ -50,10 +48,9 @@ function findInDirection(node, direction, test) {
  *
  * @param {Node} node
  * @param {string} direction - Such as `prev` or `next`.
- * @param {(Node|string)?} test - See `assert`.
+ * @param {Node|string?} test - See `assert`.
  * @return {Node?} Found node or `null`.
  */
-
 function findUpwardsInDirection(node, direction, test) {
     node = node.parent;
 
@@ -76,10 +73,9 @@ function findUpwardsInDirection(node, direction, test) {
  *
  * @param {Node} node
  * @param {string} direction - Such as `prev`, `parent`.
- * @param {(Node|string)?} test - See `assert`.
+ * @param {Node|string?} test - See `assert`.
  * @return {Array.<Node>} Found nodes.
  */
-
 function findAllInDirection(node, direction, test) {
     var result;
 
@@ -100,10 +96,9 @@ function findAllInDirection(node, direction, test) {
  * Find the first preceding sibling that passes `test`.
  *
  * @this {Child}
- * @param {(Node|string)?} test - See `assert`.
+ * @param {Node|string?} test - See `assert`.
  * @return {Child?} Found node.
  */
-
 function findBefore(test) {
     return findInDirection(this, 'prev', test);
 }
@@ -112,10 +107,9 @@ function findBefore(test) {
  * Find the first following sibling that passes `test`.
  *
  * @this {Child}
- * @param {(Node|string)?} test - See `assert`.
+ * @param {Node|string?} test - See `assert`.
  * @return {Child?} Found node.
  */
-
 function findAfter(test) {
     return findInDirection(this, 'next', test);
 }
@@ -124,10 +118,9 @@ function findAfter(test) {
  * Find the first preceding node upwards that passes `test`.
  *
  * @this {Child}
- * @param {(Node|string)?} test - See `assert`.
+ * @param {Node|string?} test - See `assert`.
  * @return {Child?} Found node.
  */
-
 function findBeforeUpwards(test) {
     return findUpwardsInDirection(this, 'prev', test);
 }
@@ -136,10 +129,9 @@ function findBeforeUpwards(test) {
  * Find the first following node upwards that passes `test`.
  *
  * @this {Child}
- * @param {(Node|string)?} test - See `assert`.
+ * @param {Node|string?} test - See `assert`.
  * @return {Child?} Found node.
  */
-
 function findAfterUpwards(test) {
     return findUpwardsInDirection(this, 'next', test);
 }
@@ -148,10 +140,9 @@ function findAfterUpwards(test) {
  * Find preceding siblings that pass `test`.
  *
  * @this {Child}
- * @param {(Node|string)?} test - See `assert`.
+ * @param {Node|string?} test - See `assert`.
  * @return {Array.<Child>} Found nodes.
  */
-
 function findAllBefore(test) {
     return findAllInDirection(this, 'prev', test);
 }
@@ -160,10 +151,9 @@ function findAllBefore(test) {
  * Find following siblings that pass `test`.
  *
  * @this {Child}
- * @param {(Node|string)?} test - See `assert`.
+ * @param {Node|string?} test - See `assert`.
  * @return {Array.<Child>} Found nodes.
  */
-
 function findAllAfter(test) {
     return findAllInDirection(this, 'next', test);
 }
@@ -172,10 +162,9 @@ function findAllAfter(test) {
  * Find the first parent that passes `test`.
  *
  * @this {Child}
- * @param {(Node|string)?} test - See `assert`.
+ * @param {Node|string?} test - See `assert`.
  * @return {Parent?} Found parent, or null.
  */
-
 function findParent(test) {
     return findInDirection(this, 'parent', test);
 }
@@ -184,10 +173,9 @@ function findParent(test) {
  * Find all parents that pass `test`.
  *
  * @this {Child}
- * @param {(Node|string)?} test - See `assert`.
+ * @param {Node|string?} test - See `assert`.
  * @return {Array.<Parent>} Found nodes.
  */
-
 function findParents(test) {
     return findAllInDirection(this, 'parent', test);
 }
@@ -196,10 +184,9 @@ function findParents(test) {
  * Find the first child that passes `test`.
  *
  * @this {Parent}
- * @param {(Node|string)?} test - See `assert`.
+ * @param {Node|string?} test - See `assert`.
  * @return {Child?} Found node.
  */
-
 function findFirstChild(test) {
     if (assert(this.head, test)) {
         return this.head;
@@ -212,10 +199,9 @@ function findFirstChild(test) {
  * Find the last child that passes `test`.
  *
  * @this {Parent}
- * @param {(Node|string)?} test - See `assert`.
+ * @param {Node|string?} test - See `assert`.
  * @return {Child?} Found node.
  */
-
 function findLastChild(test) {
     if (assert(this.tail, test)) {
         return this.tail;
@@ -228,10 +214,9 @@ function findLastChild(test) {
  * Find all children that pass `test`.
  *
  * @this {Parent}
- * @param {(Node|string)?} test - See `assert`.
+ * @param {Node|string?} test - See `assert`.
  * @return {Array.<Child>} Found nodes.
  */
-
 function findChildren(test) {
     var result;
 
@@ -251,7 +236,6 @@ function findChildren(test) {
  *
  * @param {Retext} retext
  */
-
 function find(retext) {
     var TextOM,
         parentPrototype,
@@ -280,7 +264,7 @@ function find(retext) {
     parentPrototype.findLastChild = findLastChild;
 }
 
-/**
+/*
  * Expose `find`.
  */
 

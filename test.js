@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/*
  * Dependencies.
  */
 
@@ -12,7 +12,7 @@ retextFind = require('./');
 Retext = require('retext');
 assert = require('assert');
 
-/**
+/*
  * Fixture.
  */
 
@@ -20,7 +20,7 @@ var paragraph;
 
 paragraph = 'Some simple text. Other sentence.';
 
-/**
+/*
  * Retext.
  */
 
@@ -35,7 +35,6 @@ TextOM = retext.TextOM;
  *
  * @param {string} methodName
  */
-
 function assertChildHasMethod(methodName) {
     assert(typeof new TextOM.Child()[methodName] === 'function');
     assert(typeof new TextOM.Element()[methodName] === 'function');
@@ -56,7 +55,6 @@ function assertChildHasMethod(methodName) {
  *
  * @param {string} methodName
  */
-
 function assertParentHasMethod(methodName) {
     assert(typeof new TextOM.Parent()[methodName] === 'function');
     assert(typeof new TextOM.Element()[methodName] === 'function');
@@ -67,7 +65,7 @@ function assertParentHasMethod(methodName) {
     assert(typeof new TextOM.WordNode()[methodName] === 'function');
 }
 
-/**
+/*
  * Tests.
  */
 
