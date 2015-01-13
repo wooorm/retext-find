@@ -5,23 +5,26 @@
 ## Installation
 
 npm:
-```sh
+
+```bash
 $ npm install retext-find
 ```
 
 Component:
-```sh
+
+```bash
 $ component install wooorm/retext-find
 ```
 
 Bower:
-```sh
+
+```bash
 $ bower install retext-find
 ```
 
 ## Usage
 
-```js
+```javascript
 var Retext = require('retext');
 var find = require('retext-find');
 var inspect = require('retext-inspect');
@@ -48,7 +51,7 @@ The first makes it easy to find only nodes of a certain type (such as words), th
 
 ### Child#findBefore(test?)
 
-```js
+```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
     console.log(tree.tail.findBefore(tree.PARAGRAPH_NODE));
     /**
@@ -71,7 +74,7 @@ Find the first preceding sibling that passes `test`, `child.prev` if `test` is o
 
 ### Child#findAfter(test?)
 
-```js
+```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
     console.log(tree.head.findAfter(tree.WHITE_SPACE_NODE));
     /**
@@ -84,7 +87,7 @@ Find the first following sibling that passes `test`, `child.next` if `test` is o
 
 ### Child#findBeforeUpwards(test?)
 
-```js
+```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
     console.log(tree.tail.head.head.findBeforeUpwards());
     /**
@@ -97,7 +100,7 @@ Find the first node directly before an ancestor that passes `test`, or `null`.
 
 ### Child#findAfterUpwards(test?)
 
-```js
+```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
     console.log(tree.head.head.tail.findAfterUpwards());
     /**
@@ -110,7 +113,7 @@ Find the first node directly after an ancestor that passes `test`, or `null`.
 
 ### Child#findAfter(test?)
 
-```js
+```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
     console.log(tree.head.findAfter(tree.WHITE_SPACE_NODE));
     /**
@@ -123,7 +126,7 @@ Find the first following sibling that passes `test`, `child.next` if `test` is o
 
 ### Child#findAllBefore(test?)
 
-```js
+```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
     console.log(tree.head.head[3].findAllBefore(tree.WORD_NODE));
     /**
@@ -143,7 +146,7 @@ Find preceding siblings that pass `test`.
 
 ### Child#findAllAfter(test?)
 
-```js
+```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
     console.log(tree.head.head[3].findAllAfter());
     /**
@@ -160,7 +163,7 @@ Find following siblings that pass `test`.
 
 ### Child#findParent(test?)
 
-```js
+```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
     console.log(tree.head.head.head.findParent(tree.head));
     /**
@@ -188,7 +191,7 @@ Find the first parent that passes `test`, `child.parent` if `test` is omitted, o
 
 ### Child#findParents(test?)
 
-```js
+```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
     tree.head.head.head.findParents().forEach(function (node) {
         console.log(node.type, node.toString());
@@ -205,7 +208,7 @@ Find parents that pass `test`.
 
 ### Parent#findFirstChild(test?)
 
-```js
+```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
     console.log(tree.head.head.findFirstChild(tree.PUNCTUATION_NODE));
     /**
@@ -218,7 +221,7 @@ Find the first child that passes `test`, `parent.head` if `test` is omitted, or 
 
 ### Parent#findLastChild(test?)
 
-```js
+```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
     console.log(tree.head.head.findLastChild(tree.WORD_NODE));
     /**
@@ -231,7 +234,7 @@ Find the last child that passes `test`, `parent.tail` if `test` is omitted, or `
 
 ### Parent#findChildren(test?)
 
-```js
+```javascript
 retext.parse('Some simple text.\n\nAnother paragraph.', function (err, tree) {
     console.log(tree.head.head.findChildren(tree.WORD_NODE));
     /**
@@ -251,7 +254,7 @@ Find children that pass `test`, or all children if `test` is omitted.
 
 ## Performance
 
-```
+```text
                   find all paragraphs before a document's last paragraph
      878,116 op/s » A section
      122,654 op/s » An article
